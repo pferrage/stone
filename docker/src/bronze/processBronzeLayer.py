@@ -1,0 +1,16 @@
+import src.bronze.auxBronze as aux
+import src.tools.utils as ut
+
+
+# Função para carga no nível Bronze do modelo Medalhão
+def processBronzeLayer(source):
+    try:
+        dir ='files/'     
+        df, tabName, dat_ingestion = aux.extractFileAndSave(source, dir)
+        
+        # Carga na camada bronze
+        ut.loadDataFrameToSQL(df,tabName,'bronze')
+
+        return tabName,dat_ingestion
+    except:
+        print(f'A tabela {tabName} não foi criada/sobrescrita')
