@@ -5,8 +5,7 @@ import src.tools.utils as ut
 # Função para carga no nível Bronze do modelo Medalhão
 def processBronzeLayer(source):
     try:
-        dir ='files/'     
-        df, tabName, dat_ingestion = aux.extractFileAndSave(source, dir)
+        df, tabName, dat_ingestion = aux.extractFileAndSave(source)
         
         # Carga na camada bronze
         ut.loadDataFrameToSQL(df,tabName,'bronze')

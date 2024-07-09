@@ -12,7 +12,12 @@ def teste():
     return 0
 
 # Função que extrai um arquivo página "https://dadosabertos.rfb.gov.br/CNPJ/" e armazena localmente
-def extractFileAndSave(file,dir):
+def extractFileAndSave(file):
+    
+    dirFiles = 'files/'
+    dirFliesCSV = 'files/csv/'
+    os.makedirs(os.path.dirname(dirFiles), exist_ok=True)
+    os.makedirs(os.path.dirname(dirFliesCSV), exist_ok=True)
     
     url = "https://dadosabertos.rfb.gov.br/CNPJ/"
     dat_ingestion = dt.now()
@@ -25,10 +30,10 @@ def extractFileAndSave(file,dir):
 #        file = ext.selectBestFile(df_scraping,file)
 
     file = selectBestFile(df_scraping,file)    
-    getFile(url,file,dir)
+    getFile(url,file,dirFiles)
 
     fileCSV = file.replace('.zip','.csv')
-    df,tabName = ut.getCSV('files/csv/',fileCSV)
+    df,tabName = ut.getCSV(dirFliesCSV,fileCSV)
     
     df[['dat_ingestion']] = dat_ingestion
     

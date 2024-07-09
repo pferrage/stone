@@ -8,7 +8,9 @@ import os
 # Função para carregar um dataframe em uma tabela do SQLite
 def loadDataFrameToSQL(df, table, db):
     try:
-        con = sqlite3.connect('sqlite3/stonedb_'+ db)        
+        db_path = 'sqlite3/stonedb_' + db
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
+        con = sqlite3.connect(db_path)        
         df.to_sql(con=con, name=table, if_exists="replace",index=False)
         con.close()
     except:
@@ -17,7 +19,8 @@ def loadDataFrameToSQL(df, table, db):
 # Função para carregar uma tabela do SQLite em um dataframe 
 def loadSQLToDataFrame(query, db):
     try: 
-        con = sqlite3.connect('sqlite3/stonedb_'+ db)
+        db_path = 'sqlite3/stonedb_' + db
+        con = sqlite3.connect(db_path)
         df = pd.read_sql(query,con=con)
         con.close()
         return df

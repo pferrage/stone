@@ -1,4 +1,4 @@
-
+import numpy as np
 import pandas as pd
 import src.tools.utils as ut
 
@@ -31,9 +31,9 @@ def tb_empresas(df):
    
     df['cnpj']                     = df['0']
     df['razao_social']             = df['1']
-    df['natureza_juridica']        = df['2'].astype(int)
-    df['qualificacao_responsavel'] = df['3'].astype(int)
-    df['capital_social']           = df['4'].str.replace(',', '.')
+    df['natureza_juridica']        = df['2'].astype(np.int64)
+    df['qualificacao_responsavel'] = df['3'].astype(np.int64)
+    df['capital_social']           = df['4'].str.replace(',', '.').astype(np.float64)
     df['cod_porte']                = df['5']
     df['dat_ingestion']            = pd.to_datetime(df['dat_ingestion'])
 
@@ -43,7 +43,7 @@ def tb_empresas(df):
 def tb_socios(df):
 
     df['cnpj']                      = df['0']
-    df['tipo_socio']                = df['1'].astype(int)
+    df['tipo_socio']                = df['1'].astype(np.int64)
     df['nome_socio']                = df['2']
     df['documento_socio']           = df['3']
     df['codigo_qualificacao_socio'] = df['4']

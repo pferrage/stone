@@ -18,7 +18,6 @@ def setVwEmpresaSocio(df_emp, df_soc, dt):
     df = pd.merge(df, socios_estrangeiros[['cnpj', 'flag_socio_estrangeiro']], on='cnpj', how='left')
     df = pd.merge(df, flag_doc[['cnpj', 'doc_alvo']], on='cnpj', how='left')
 
-    # Passo 5: Preencher valores NaN com False
     df['flag_socio_estrangeiro'].fillna(False, inplace=True)
     df['doc_alvo'].fillna(False, inplace=True)
 

@@ -6,15 +6,10 @@ from src.gold.processGoldLayer import processGoldLayer
 
 
 def processETL(file):
-    tabName,dt_ingestion = processBronzeLayer(file)
-    processSilverLayer(tabName,dt_ingestion)
-    processGoldLayer(dt_ingestion)
-    print(f'O arquivo foi carregado com sucesso na tabela {tabName} em todos os ambientes.')
-#    try:
-#        tabName,dt_ingestion = processBronzeLayer(file)
-#        processSilverLayer(tabName,dt_ingestion)
-#        processGoldLayer(dt_ingestion)
-#        print(f'O arquivo foi carregado com sucesso na tabela {tabName} em todos os ambientes.')
-#    except: 
-#        print('O arquivo não foi carregado, contacte o administrador')
-        
+    try:
+        tabName,dt_ingestion = processBronzeLayer(file)
+        processSilverLayer(tabName,dt_ingestion)
+        processGoldLayer(dt_ingestion)
+        print(f'O arquivo foi carregado com sucesso na tabela {tabName} em todos os ambientes.')
+    except: 
+        print('O arquivo não foi carregado, contacte o administrador')
