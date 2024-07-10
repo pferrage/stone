@@ -7,10 +7,6 @@ import src.tools.utils as ut
 from bs4 import BeautifulSoup
 from datetime import datetime as dt
 
-
-def teste():
-    return 0
-
 # Função que extrai um arquivo página "https://dadosabertos.rfb.gov.br/CNPJ/" e armazena localmente
 def extractFileAndSave(file):
     
