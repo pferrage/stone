@@ -21,10 +21,6 @@ def extractFileAndSave(file):
     #Função para raspagem de lista de arquivos disponíveis
     df_scraping = scrapingURL(url)
 
-  
-#    if ~(ut.checkNumber(file)):
-#        file = ext.selectBestFile(df_scraping,file)
-
     file = selectBestFile(df_scraping,file)    
     getFile(url,file,dirFiles)
 
