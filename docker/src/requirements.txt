@@ -1,4 +1,4 @@
 pandas
 requests
-BeautifulSoup
-sqlite3
+BeautifulSoup4
+lxml
