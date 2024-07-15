@@ -91,3 +91,5 @@ In this project, only one table was created in the Gold layer. The " tb_consolid
 4. type: ```docker-compose down && docker-compose up -d```
 5. Wait for the services to start and for the data ingestion pipeline to run
 6. Next the service has been run, the following message should appear on the console: ***"All tables have been properly created"***
+7. To track the results, see the docker LOG. The flow can take around 15 minutes to run.
+8. At the end of the process use the commands: ```docker ps``` to check the "Name" of the container. Use this "container_name" to run the command: ```docker logs <container_name> -f --tail 20```
