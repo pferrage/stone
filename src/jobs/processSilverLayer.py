@@ -9,7 +9,6 @@ def processSilverLayer(tabName):
     df = treatColumns(df,tabName)
 
     df = df.drop_duplicates()
-    df = df.dropna()
     ut.loadDataFrameToSQL(df,tabName,'silver')
 
 def getAllRecordsFromABronzeTable(tabName: str) -> tuple[pd.DataFrame]:
