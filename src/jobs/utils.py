@@ -13,12 +13,6 @@ def getEngine(db: str):
     connection_string = f'mysql+pymysql://{user}:{password}@{host}:{port}/{db}'
     return create_engine(connection_string)
 
-def getEngine_sqlite(db: str):
-    os.makedirs(os.path.dirname('stndb/'), exist_ok=True)    
-    db_path = 'stndb/' + db
-    engine = create_engine(f'sqlite:///{db_path}', echo=False)
-    return engine
-
 def loadDataFrameToSQL(df: pd.DataFrame, tabName: str, db: str) -> tuple[None]:
     engine = getEngine(db)
     df.to_sql(tabName, engine, if_exists='append', index=False)
@@ -63,7 +57,6 @@ def getCSV(dir: str,csvFile: str) -> tuple[pd.DataFrame,str]:
     csvFilePath = dir + csvFile
     
     df = pd.read_csv(csvFilePath, encoding='ISO-8859-1',sep=';', header=None)
-    df = df.head(50000)
     tabName = setTableName(csvFile)
     
     return df,tabName
