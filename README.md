@@ -9,6 +9,7 @@ This project is responsible for downloading, processing and storing company and 
 The process also allows for the storage of other data from the same public repository.
 
 ### Project architecture
+![image](https://github.com/user-attachments/assets/269e6866-b39f-46f9-b2e4-11f385a4deb8)
 
 ### Data project structure
 src/</br>
@@ -35,9 +36,6 @@ src/</br>
 #### Process Gold Layer (processGoldLayer.py)
 ><b>Consolidated data:</b> After loading the tables needed for the flow, the Gold layer process is responsible for selecting existing (and relevant) data from the "stndb_silver" dataset, extracting relevant insights and loading a table with the consolidated data into a table in the "stndb_gold" dataset.
 
-### Data architecture
-![image](https://github.com/user-attachments/assets/269e6866-b39f-46f9-b2e4-11f385a4deb8)
-
 #### Layers
 ><b>Bronze layer:</b> Used by ingest applications to write data replicated from the source. May contain duplicates and columns added during ingestion:</br>
 ✅ Ingestion-specific columns and tags (dat_ingestion, max_ref_date, etc);</br>
@@ -57,10 +55,35 @@ src/</br>
 ✅ Accessible for dataviz;</br>
 ❌ Uses data directly from the Bronze layer.
 
+### Database management
+The system uses MySQL as the data management tool for all layers. 
+
+#### MySQL connection
+    - MYSQL_HOST=mysql
+    - MYSQL_PORT=3306
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=root_password
+#### Tables
+***stndb/bronze*** </br>
+Tables with all the records extracted from the *csv file contained within the *.zip downloaded from the public repository. Following the premises of the Bronze layer 
+- tb_empresas
+- tb_socios</br>
+
+***stndb/silver***</br>
+Tables taken from the bronze layer, with column treatment (naming and typing). Following the premises of the silver layer
+</br>
+- tb_empresas
+- tb_socios</br>
+
+***stndb/gold***</br>
+In this project, only one table was created in the Gold layer. The " tb_consolidado_socios " table is a consolidation of the " tb_empresas " and " tb_socios " tables. It returns the number of partners in each company, a flag indicating whether or not the company has any foreign partners and a flag indicating whether the company is size 3. Following the assumptions of the gold layer</br>
+- tb_consolidado_socios
+
 ## Run project
 ### Requirements
-1. 16GB of RAM
-2. ```Docker``` latest version.
+1. Internet connection (to download files)
+2. 16GB of RAM
+3. ```Docker``` latest version.
 ### Step-by-step
 1. Clone this repository
 2. Unzip the folder
