@@ -1,9 +1,3 @@
-#!/usr/bin/env bash
-
-# Use este script para testar se um host/porta TCP está disponível
-#
-# Exemplo de uso: ./wait-for-it.sh google.com:80 -- echo "Google está no ar"
-
 cmdname=$(basename $0)
 
 echoerr() { if [[ $QUIET -ne 1 ]]; then echo "$@" 1>&2; fi }
@@ -49,7 +43,6 @@ wait_for()
 
 wait_for_wrapper()
 {
-    # Para suportar SIGINT durante o timeout: https://unix.stackexchange.com/a/57692
     if [[ $QUIET -eq 1 ]]; then
         timeout $TIMEOUT $0 -q -t 0 -- "$HOST:$PORT" &
     else

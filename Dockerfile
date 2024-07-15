@@ -1,18 +1,20 @@
-# Use a imagem base do Python
 FROM python:3.9-slim
 
-# Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copie o arquivo requirements.txt e instale as dependências
 COPY src/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copie o código fonte da aplicação e o script wait-for-it
 COPY src/ .
 
-# Conceda permissão de execução para o script wait-for-it
-RUN chmod +x wait-for-it.sh
+# workaround to wait for mysql
+RUN apt-get update && apt-get install wget build-essential -y
+RUN wget http://sourceforge.net/projects/netcat/files/netcat/0.7.1/netcat-0.7.1.tar.gz
+RUN tar -xzvf netcat-0.7.1.tar.gz
+RUN ./netcat-0.7.1/configure
+RUN make
+RUN make install
+RUN tr -d '\r' < ./wait-for-it.sh > ./wait-for-it-linux.sh
+RUN chmod +x wait-for-it-linux.sh
 
-# Comando para rodar o programa Python, aguardando o MySQL estar pronto
-CMD ["./wait-for-it.sh", "mysql:3306", "--", "python", "main.py"]
+CMD ["./wait-for-it-linux.sh", "mysql:3306", "--", "python", "main.py"]
