@@ -15,4 +15,4 @@ def main(files: tuple) -> tuple[None]:
         return None, error_message  
 
 if __name__ == "__main__":
-    main(['empresas','socios'])
+    main(['empresas1','socios1'])
