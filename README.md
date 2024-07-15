@@ -56,3 +56,15 @@ src/</br>
 ✅ Separated by domain or area of interest;</br>
 ✅ Accessible for dataviz;</br>
 ❌ Uses data directly from the Bronze layer.
+
+## Run project
+### Requirements
+1. 16GB of RAM
+2. ```Docker``` latest version.
+### Step-by-step
+1. Clone this repository
+2. Unzip the folder
+3. Use cmd to access the project folder
+4. type: ```docker-compose down && docker-compose up -d```
+5. Wait for the services to start and for the data ingestion pipeline to run
+6. Next the service has been run, the following message should appear on the console: ***"All tables have been properly created"***
