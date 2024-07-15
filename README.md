@@ -36,7 +36,7 @@ src/</br>
 ><b>Consolidated data:</b> After loading the tables needed for the flow, the Gold layer process is responsible for selecting existing (and relevant) data from the "stndb_silver" dataset, extracting relevant insights and loading a table with the consolidated data into a table in the "stndb_gold" dataset.
 
 ### Data architecture
-[desenho da aquitetura]
+![image](https://github.com/user-attachments/assets/1c42ce6b-e016-4fdd-874b-9a472f2ea46a)
 
 #### Layers
 ><b>Bronze layer:</b> Used by ingest applications to write data replicated from the source. May contain duplicates and columns added during ingestion:</br>
